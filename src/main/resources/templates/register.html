@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <style>
+        body {
+            background-image: url('path_to_rocket_league_background_image.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+            color: #ff6600; /* Orange text color */
+        }
+        form {
+            background-color: rgba(88, 24, 69, 0.7); /* Dark purple background */
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            margin: 0 auto;
+        }
+        label, select, input[type="email"], input[type="text"], input[type="password"] {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        select {
+            height: 40px;
+        }
+        input[type="submit"] {
+            background-color: #ff6600; /* Orange submit button color */
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #cc5500; /* Darker orange on hover */
+        }
+
+    </style>
+</head>
+<body>
+
+<h2>User Registration</h2>
+
+<div class="main">
+
+    <div th:if="@{param.fail}" class="alert alert-success">
+        email or username already exists
+    </div>
+    <form th:action="@{/register/save}" th:object="${user}" method="post">
+        <label for="email">Email:</label>
+        <input type="email" th:field="*{email}" required>
+
+        <label for="epicGames">Epic Games Username:</label>
+        <input type="text" th:field="*{epicGames}" required>
+
+        <label for="password">Password:</label>
+        <input type="password" th:field="*{password}" required>
+
+
+        <input type="submit" value="Register">
+    </form>
+</div>
+</body>
+</html>
