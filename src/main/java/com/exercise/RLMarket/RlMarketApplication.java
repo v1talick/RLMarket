@@ -17,9 +17,9 @@ public class RlMarketApplication {
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(RlMarketApplication.class, args);
 
-		ItemRepository itemRepository = context.getBean(ItemRepository.class);
-		ItemService service = context.getBean(ItemService.class);
-		System.out.println(service.getItem(44));
+//		ItemRepository itemRepository = context.getBean(ItemRepository.class);
+//		ItemService service = context.getBean(ItemService.class);
+//		System.out.println(service.getItem(44));
 	}
 
 }
