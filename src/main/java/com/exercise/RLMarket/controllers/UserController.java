@@ -37,7 +37,7 @@ public class UserController {
     @PostMapping("/register/save")
     public String register(@Valid @ModelAttribute("user") User user,
                            BindingResult result, Model model) {
-        if(userService.findByEmail(user.getEmail()).getEmail() != null) {
+        if (userService.findByEmail(user.getEmail()).getEmail() != null) {
 //            result.rejectValue("email", "this email already registered");
 //            System.out.println("\n\n\n"+userService.findByEmail(user.getEmail()));
             return "redirect:/register?fail";

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Title</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+<!--            grid-template-columns: repeat(3, 1fr);-->
+            gap: 20px;
+<!--            display: flex;-->
+<!--            flex-wrap: wrap;-->
+<!--            justify-content: space-around;-->
+        }
+
+        .photo-container {
+            width: 200px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .photo {
+            width: 100%;
+            height: 100px; /* Уменьшил высоту, чтобы вмещалось две фотографии */
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .caption {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="gallery">
+
+<!--    <div class="photo-container">-->
+<!--        <div class="photo">-->
+<!--            <img src="https://raw.githubusercontent.com/enzanki-ars/rocket-league-item-images/enzanki-ars/Rocket%20League%20Item%20Images/Antenna/Alien/Default.png" alt="First Photo">-->
+<!--            <p class="caption">Name</p>-->
+<!--        </div>-->
+
+<!--        <p>Changes for</p>-->
+
+<!--        <div class="photo">-->
+<!--            <img src="https://raw.githubusercontent.com/enzanki-ars/rocket-league-item-images/enzanki-ars/Rocket%20League%20Item%20Images/Antenna/8-Ball/Default.png" alt="Second Photo">-->
+<!--            <p class="caption">Name</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+    <div th:each="t : ${trades}" class="photo-container">
+        <div class="photo">
+            <img th:src="'https://raw.githubusercontent.com/enzanki-ars/rocket-league-item-images/enzanki-ars/Rocket%20League%20Item%20Images/'
+                                            + ${t.giveItem.itemType} + '/' + ${t.giveItem.itemLongLabel.replace(' ', '%20')} + '/Default.png'"
+                 alt="Item Image" loading="lazy">
+            <p class="caption" th:text="t.giveItem.itemLongLabel"></p>
+        </div>
+
+        <p>Changes for</p>
+
+        <div class="photo">
+            <img th:src="'https://raw.githubusercontent.com/enzanki-ars/rocket-league-item-images/enzanki-ars/Rocket%20League%20Item%20Images/'
+                                            + ${t.getItem.itemType} + '/' + ${t.getItem.itemLongLabel.replace(' ', '%20')} + '/Default.png'"
+                 alt="Item Image" loading="lazy">
+            <p class="caption" th:text="t.item.itemLongLabel"></p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

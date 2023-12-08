@@ -24,16 +24,17 @@ public class ItemController {
         model.addAttribute("items", itemService.getItems());
         return "items";
     }
+
     @GetMapping("/item/{id}")
     public String getItem(Model model, @PathVariable int id) {
         model.addAttribute("item", itemService.getItem(id));
         return "item";
     }
+
     @GetMapping("/trade")
     public String createTradeOffer(Model model) {
         model.addAttribute("allItems", itemService.getItems());
 
         return "tradeForm";
-//        return "createTradeOffer";
     }
 }

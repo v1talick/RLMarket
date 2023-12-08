@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class TradeServiceImpl implements TradeService {
-    private TradeOfferRepository tradeOfferRepository;
+    private final TradeOfferRepository tradeOfferRepository;
 
     @Autowired
     public TradeServiceImpl(TradeOfferRepository tradeOfferRepository) {

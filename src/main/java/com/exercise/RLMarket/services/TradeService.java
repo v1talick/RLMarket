@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface TradeService {
     void saveTrade(TradeOffer trade);
+
     void deleteTrade(int tradeId);
+
     List<TradeDTO> getAllTrades();
+
     TradeDTO getTrade(int id);
 }

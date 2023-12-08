@@ -24,4 +24,9 @@ public class TradeItem {
 
     @Column(name = "amount")
     int amount;
+
+    public TradeItem(Item item, int amount) {
+        this.item = item;
+        this.amount = amount;
+    }
 }
