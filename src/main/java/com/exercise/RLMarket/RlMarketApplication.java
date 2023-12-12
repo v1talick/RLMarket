@@ -26,8 +26,8 @@ public class RlMarketApplication {
 
 //        ItemService service = context.getBean(ItemService.class);
 //        ItemRepository repository = context.getBean(ItemRepository.class);
-        TradeService tradeService = context.getBean(TradeService.class);
-        System.out.println(tradeService.getAllTrades());
+//        TradeService tradeService = context.getBean(TradeService.class);
+//        System.out.println(tradeService.getAllTrades());
 
 //        UserService userService = context.getBean(UserService.class);
 //

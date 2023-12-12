@@ -34,7 +34,7 @@ public class TradeOffer {
     @JoinColumn(name = "give_item")
     private TradeItem giveItem;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "get_item")
     private TradeItem getItem;
 }

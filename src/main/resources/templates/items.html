@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Item List</title>
     <!-- Add Bootstrap and custom styling -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/header-style.css}">
     <style>
-         body {
+        body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
-            color: #fff;
-            margin: 0;
+<!--            margin: 100px;-->
             padding: 0;
         }
 
@@ -83,7 +83,7 @@
 <body>
 
 <div class="container">
-    <h2>Item List</h2>
+    <header class="header" th:insert="~{blocks/header :: header}"></header>
 
     <div class="row">
         <div th:each="item : ${items}" class="col-md-4">
@@ -127,9 +127,12 @@
 </div>
 
 <!-- Add Bootstrap JS and Popper.js CDN links -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" th:src="@{/js/header-script.js}"></script>
 
 </body>
 </html>
