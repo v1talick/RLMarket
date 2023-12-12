@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -29,11 +30,11 @@ public class TradeOffer {
     @Column(name = "date")
     private Date date;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "give_item")
     private TradeItem giveItem;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "get_item")
     private TradeItem getItem;
 }

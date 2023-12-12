@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -34,10 +35,16 @@ public class UserController {
         return "register";
     }
 
+    @GetMapping("/profile/{id}")
+    public String profile(Model model, @PathVariable("id") int id) {
+        model.addAttribute("user", userService.getUserById(id));
+
+        return "profile";
+    }
     @PostMapping("/register/save")
     public String register(@Valid @ModelAttribute("user") User user,
                            BindingResult result, Model model) {
-        if(userService.findByEmail(user.getEmail()).getEmail() != null) {
+        if (userService.findByEmail(user.getEmail()).getEmail() != null) {
 //            result.rejectValue("email", "this email already registered");
 //            System.out.println("\n\n\n"+userService.findByEmail(user.getEmail()));
             return "redirect:/register?fail";

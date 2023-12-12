@@ -20,7 +20,7 @@ public class Item {
     private int itemId;
     @Column(name = "item_long_label")
     private String itemLongLabel;
-//    private String itemShortSortLabel;
+    //    private String itemShortSortLabel;
 //    private boolean itemCurrency;
     @Column(name = "item_blueprint")
     private boolean itemBlueprint;

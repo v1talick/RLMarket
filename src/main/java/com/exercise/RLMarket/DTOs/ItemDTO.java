@@ -14,5 +14,5 @@ public class ItemDTO {
     private String itemLongLabel;
     private boolean itemBlueprint;
     private boolean itemPaintable;
-    private String itemType; //slotIndex
+    private String itemType;
 }

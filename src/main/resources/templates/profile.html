@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/header-style.css}">
+</head>
+<body>
+<!--    <p th:text="${user.epicGames}"></p>-->
+
+<div class="container mt-5">
+    <header class="header" th:insert="~{blocks/header :: header}"></header>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <img src="https://e7.pngegg.com/pngimages/81/570/png-clipart-profile-logo-computer-icons-user-user-blue-heroes-thumbnail.png" class="card-img-top" alt="Profile Picture" loading="lazy">
+                <div class="card-body text-center">
+                    <h5 class="card-title" th:text="${user.epicGames}"></h5>
+                    <p class="card-text" th:text="${user.email}"></p>
+                    <p class="card-text" th:text="${user.role}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/header-script.js}"></script>
+</body>
+</html>
