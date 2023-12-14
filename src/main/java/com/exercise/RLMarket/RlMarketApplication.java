@@ -6,6 +6,7 @@ import com.exercise.RLMarket.enteties.TradeItem;
 import com.exercise.RLMarket.enteties.TradeOffer;
 import com.exercise.RLMarket.enteties.User;
 import com.exercise.RLMarket.repositories.ItemRepository;
+import com.exercise.RLMarket.repositories.TradeOfferRepository;
 import com.exercise.RLMarket.services.ItemService;
 import com.exercise.RLMarket.services.TradeService;
 import com.exercise.RLMarket.services.UserService;
@@ -24,10 +25,14 @@ public class RlMarketApplication {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(RlMarketApplication.class, args);
 
+//        TradeOfferRepository tradeOfferRepository = context.getBean(TradeOfferRepository.class);
+//        System.out.println(tradeOfferRepository.findTradeOfferByUser(6));
 //        ItemService service = context.getBean(ItemService.class);
 //        ItemRepository repository = context.getBean(ItemRepository.class);
 //        TradeService tradeService = context.getBean(TradeService.class);
+//        System.out.println(tradeService.getTradesByUser(6));
 //        System.out.println(tradeService.getAllTrades());
+
 
 //        UserService userService = context.getBean(UserService.class);
 //

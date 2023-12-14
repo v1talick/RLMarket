@@ -20,6 +20,5 @@ public class WebConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(userDTOConverter);
         registry.addConverter(itemDTOConverter);
-        // Add other converters if needed
     }
 }

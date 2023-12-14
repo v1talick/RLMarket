@@ -7,7 +7,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a href="/" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
           <li class="nav-item"><a href="/trading" class="nav-link text-uppercase font-weight-bold">Trading</a></li>
-          <li class="nav-item"><a href="/items" class="nav-link text-uppercase font-weight-bold">Gallery</a></li>
+          <li class="nav-item"><a href="/items" class="nav-link text-uppercase font-weight-bold">Items</a></li>
           <li sec:authorize="isAuthenticated()" class="nav-item">
             <a th:href="@{/profile/{id}(id=${#authentication.principal.id})}" class="nav-link text-uppercase font-weight-bold">Profile</a>
           </li>

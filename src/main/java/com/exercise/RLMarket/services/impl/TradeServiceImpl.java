@@ -37,6 +37,11 @@ public class TradeServiceImpl implements TradeService {
     }
 
     @Override
+    public List<TradeDTO> getTradesByUser(int userId) {
+        return tradeOfferRepository.findTradeOfferByUser(userId).stream().map(TradeMapper::tradeOfferToTradeDTO).toList();
+    }
+
+    @Override
     public TradeDTO getTrade(int id) {
         return TradeMapper.tradeOfferToTradeDTO(tradeOfferRepository.findById(id).orElse(new TradeOffer()));
     }

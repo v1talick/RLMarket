@@ -60,4 +60,20 @@ public class TradeServiceImplTest {
 
         assertEquals(TradeMapper.tradeOfferToTradeDTO(testTrade1),testService.getTrade(1));
     }
+
+//    @Test
+//    public void saveTradeTest() {
+//        // Create a sample TradeDTO for testing
+//
+//
+//        // Mock the repository
+//        Mockito.when(tradeOfferRepository.save(Mockito.any(TradeOffer.class))).thenReturn(null);
+//
+//        // Call the saveTrade method
+//        testService.saveTrade(tradeDTO1);
+//
+//        // Verify that the repository's save method was called with the correct parameters
+//        Mockito.verify(tradeOfferRepository).save(Mockito.any(TradeOffer.class));
+//    }
+
 }

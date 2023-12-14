@@ -66,7 +66,7 @@
                     <img th:src="'https://raw.githubusercontent.com/enzanki-ars/rocket-league-item-images/enzanki-ars/Rocket%20League%20Item%20Images/'
                                             + ${t.giveItem.itemType} + '/' + ${t.giveItem.itemLongLabel.replace(' ', '%20')} + '/Default.png'"
                          class="card-img-top" alt="Item Image" loading="lazy">
-                    <h5 class="card-title" th:text="${t.giveItem.itemLongLabel}"></h5>
+                    <h5 class="card-title" th:text="${t.giveItem.itemLongLabel + ' X' + t.giveAmount}"></h5>
                 </div>
 
                 <p class="card-text">Changes for</p>
@@ -77,7 +77,7 @@
                                             + ${t.getItem.itemType} + '/' + ${t.getItem.itemLongLabel.replace(' ', '%20')} + '/Default.png'"
                      class="card-img-bottom" alt="Item Image" loading="lazy">
 
-                    <h5 class="card-title" th:text="${t.getItem.itemLongLabel}"></h5>
+                    <h5 class="card-title" th:text="${t.getItem.itemLongLabel + ' X' + t.getAmount}"></h5>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ import static org.mockito.Mockito.mock;
 
 public class UserMapperTest {
 
-    private final UserMapper userMapper = UserMapper.INSTANCE;
+//    private final UserMapper userMapper = UserMapper.INSTANCE;
 
     @Test
     public void testUserToUserDTO() {

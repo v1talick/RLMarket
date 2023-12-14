@@ -11,12 +11,11 @@
 </head>
 <body>
 
-<!--    <div th:if="@{param.fail}" class="alert alert-success">-->
-<!--        email or username already exists-->
-<!--    </div>-->
-
 <div class="container mt-5">
         <div class="row justify-content-center">
+            <div th:if="${param.fail}" class="alert alert-danger">
+                email or username already exists
+            </div>
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">

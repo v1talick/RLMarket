@@ -11,6 +11,7 @@ public interface TradeService {
     void deleteTrade(int tradeId);
 
     List<TradeDTO> getAllTrades();
+    List<TradeDTO> getTradesByUser(int userId);
 
     TradeDTO getTrade(int id);
 }

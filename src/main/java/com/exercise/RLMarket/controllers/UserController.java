@@ -1,6 +1,7 @@
 package com.exercise.RLMarket.controllers;
 
 import com.exercise.RLMarket.enteties.User;
+import com.exercise.RLMarket.services.TradeService;
 import com.exercise.RLMarket.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,11 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
     UserService userService;
-
+    TradeService tradeService;
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, TradeService tradeService) {
         this.userService = userService;
+        this.tradeService = tradeService;
     }
 
     @GetMapping("/login")
@@ -38,6 +40,8 @@ public class UserController {
     @GetMapping("/profile/{id}")
     public String profile(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("userTrades",tradeService.getTradesByUser(id));
+
 
         return "profile";
     }

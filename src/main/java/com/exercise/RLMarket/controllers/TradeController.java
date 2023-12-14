@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,13 @@ public class TradeController {
     @Autowired
     ItemService itemService;
 
+    @GetMapping("/delete/{id}")
+    public String showDeleteConfirmation(@PathVariable int id) {
+        tradeService.deleteTrade(id);
+
+        return "redirect:/trading";
+    }
+
     @GetMapping("/")
     public String home(Model model) {
         return "home";
@@ -39,47 +47,17 @@ public class TradeController {
     @GetMapping("/trading")
     public String createTradeOffer(Model model) {
         model.addAttribute("trade", new TradeDTO());
-        model.addAttribute("trades", tradeService.getAllTrades());
+        model.addAttribute("trades", tradeService.getAllTrades().stream().sorted(Comparator.comparing(TradeDTO::getDate).reversed()).toList());
         model.addAttribute("items", itemService.getItems());
 
         return "trades";
     }
 
-//    @GetMapping("/trading")
-//    public String createTradeOffer(
-//            Model model,
-//            @AuthenticationPrincipal UserDetails userDetails,
-//            @RequestParam(name = "itemTypeFilter", required = false) String itemTypeFilter
-//    ) {
-//        Long userId = userService.getUserIdByUsername(userDetails.getUsername());
-//
-//        // Retrieve trades related to the authenticated user
-//        List<TradeDTO> userTrades = tradeService.getTradesByUserId(userId);
-//
-//        // Apply the itemType filter if it is provided in the URL
-//        if (StringUtils.isNotBlank(itemTypeFilter)) {
-//            userTrades = userTrades.stream()
-//                    .filter(trade -> trade.getGiveItem().getItemType().equals(itemTypeFilter))
-//                    .collect(Collectors.toList());
-//        }
-//
-//        model.addAttribute("trade", new TradeDTO());
-//        model.addAttribute("trades", userTrades);
-//        model.addAttribute("items", itemService.getItems());
-//
-//        // Add available item types for the filter form
-//        List<String> itemTypes = itemService.getDistinctItemTypes();
-//        model.addAttribute("itemTypes", itemTypes);
-//
-//        return "trades";
-//    }
-
-
     @PostMapping("/submitTrade")
     public String submitTrade(@ModelAttribute(name = "trade") TradeDTO tradeDTO) {
         tradeService.saveTrade(tradeDTO);
 
-        return "redirect:/";
+        return "redirect:/trading";
     }
 
 }
