@@ -22,6 +22,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Controller
@@ -33,8 +34,13 @@ public class TradeController {
     ItemService itemService;
 
     @GetMapping("/delete/{id}")
-    public String showDeleteConfirmation(@PathVariable int id) {
-        tradeService.deleteTrade(id);
+    public String showDeleteConfirmation(@PathVariable int id, @AuthenticationPrincipal UserDetails userDetails) {
+        TradeDTO tradeDTO = tradeService.getTrade(id);
+        if(Objects.equals(userDetails.getUsername(), tradeDTO.getUser().getEmail())){
+            tradeService.deleteTrade(id);
+        } else {
+            System.out.println("failed to delete");
+        }
 
         return "redirect:/trading";
     }
