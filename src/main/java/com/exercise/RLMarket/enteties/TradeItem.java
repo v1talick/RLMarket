@@ -4,29 +4,21 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
-@Entity
-@Table(name = "trade_items")
+//@Entity
+//@Table(name = "trade_give_items")
+@MappedSuperclass
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
+@IdClass(TradeItemPK.class)
 public class TradeItem {
+    int trade;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "trade_item_id")
-    int id;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item")
     Item item;
-
     @Column(name = "amount")
     int amount;
-
-    public TradeItem(Item item, int amount) {
-        this.item = item;
-        this.amount = amount;
-    }
 }
+

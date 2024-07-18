@@ -7,5 +7,6 @@ public interface UserService {
     void createUser(User user);
 
     User findByEmail(String email);
+
     UserDTO getUserById(int id);
 }

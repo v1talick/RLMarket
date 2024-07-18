@@ -85,6 +85,24 @@
 <div class="container">
     <header class="header" th:insert="~{blocks/header :: header}"></header>
 
+    <form action="/items" method="get">
+        <label for="itemType">Filter by Item Type:</label>
+        <select id="itemType" name="itemType">
+            <option value="">All</option>
+            <option value="0">Bodies</option>
+            <option value="4">Antenna</option>
+            <option value="16">Banners</option>
+            <option value="3">Boost</option>
+            <option value="20">Borders</option>
+            <option value="5">Topper</option>
+            <option value="7">Paint</option>
+            <option value="15">Goal Explosion</option>
+            <option value="14">Supersonic Trails</option>>
+            <option value="2">Wheel</option>
+        </select>
+        <button type="submit">Apply Filter</button>
+    </form>
+
     <div class="row">
         <div th:each="item : ${items}" class="col-md-4">
             <div class="rlg-item__container is--import">

@@ -28,42 +28,42 @@ import java.util.stream.Collectors;
 @Controller
 @AllArgsConstructor
 public class TradeController {
-    @Autowired
-    TradeService tradeService;
-    @Autowired
-    ItemService itemService;
-
-    @GetMapping("/delete/{id}")
-    public String showDeleteConfirmation(@PathVariable int id, @AuthenticationPrincipal UserDetails userDetails) {
-        TradeDTO tradeDTO = tradeService.getTrade(id);
-        if(Objects.equals(userDetails.getUsername(), tradeDTO.getUser().getEmail())){
-            tradeService.deleteTrade(id);
-        } else {
-            System.out.println("failed to delete");
-        }
-
-        return "redirect:/trading";
-    }
-
-    @GetMapping("/")
-    public String home(Model model) {
-        return "home";
-    }
-
-    @GetMapping("/trading")
-    public String createTradeOffer(Model model) {
-        model.addAttribute("trade", new TradeDTO());
-        model.addAttribute("trades", tradeService.getAllTrades().stream().sorted(Comparator.comparing(TradeDTO::getDate).reversed()).toList());
-        model.addAttribute("items", itemService.getItems());
-
-        return "trades";
-    }
-
-    @PostMapping("/submitTrade")
-    public String submitTrade(@ModelAttribute(name = "trade") TradeDTO tradeDTO) {
-        tradeService.saveTrade(tradeDTO);
-
-        return "redirect:/trading";
-    }
+//    @Autowired
+//    TradeService tradeService;
+//    @Autowired
+//    ItemService itemService;
+//
+//    @GetMapping("/delete/{id}")
+//    public String showDeleteConfirmation(@PathVariable int id, @AuthenticationPrincipal UserDetails userDetails) {
+////        TradeDTO tradeDTO = tradeService.getTrade(id);
+////        if (Objects.equals(userDetails.getUsername(), tradeDTO.getUser().getEmail())) {
+////            tradeService.deleteTrade(id);
+////        } else {
+////            System.out.println("failed to delete");
+////        }
+//
+//        return "redirect:/trading";
+//    }
+//
+//    @GetMapping("/")
+//    public String home(Model model) {
+//        return "home";
+//    }
+//
+//    @GetMapping("/trading")
+//    public String createTradeOffer(Model model) {
+//        model.addAttribute("trade", new TradeDTO());
+////        model.addAttribute("trades", tradeService.getAllTrades().stream().sorted(Comparator.comparing(TradeDTO::getDate).reversed()).toList());
+//        model.addAttribute("items", itemService.getItems());
+//
+//        return "trades";
+//    }
+//
+//    @PostMapping("/submitTrade")
+//    public String submitTrade(@ModelAttribute(name = "trade") TradeDTO tradeDTO) {
+//        tradeService.saveTrade(tradeDTO);
+//
+//        return "redirect:/trading";
+//    }
 
 }

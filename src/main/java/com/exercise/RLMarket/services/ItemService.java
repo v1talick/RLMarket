@@ -8,4 +8,6 @@ public interface ItemService {
     List<ItemDTO> getItems();
 
     ItemDTO getItem(int id);
+
+    List<ItemDTO> getItemsByType(String itemType);
 }

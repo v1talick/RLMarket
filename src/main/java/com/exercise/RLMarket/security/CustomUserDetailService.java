@@ -25,7 +25,6 @@ public class CustomUserDetailService implements UserDetailsService {
             return user;
         }
 
-        System.out.println("\n\n\ntest\n\n");
         throw new UsernameNotFoundException("Invalid username");
     }
 }
