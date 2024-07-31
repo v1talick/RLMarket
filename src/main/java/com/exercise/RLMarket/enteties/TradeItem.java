@@ -2,6 +2,7 @@ package com.exercise.RLMarket.enteties;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +13,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @IdClass(TradeItemPK.class)
+@Builder
 public class TradeItem {
+    @Id
     int trade;
     @Id
     @ManyToOne(fetch = FetchType.LAZY)

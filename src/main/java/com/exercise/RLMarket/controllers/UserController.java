@@ -1,8 +1,10 @@
 package com.exercise.RLMarket.controllers;
 
 import com.exercise.RLMarket.enteties.User;
+import com.exercise.RLMarket.mappers.UserMapper;
 import com.exercise.RLMarket.services.TradeService;
 import com.exercise.RLMarket.services.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 
 @Controller
+@AllArgsConstructor
 public class UserController {
-//    UserService userService;
+    UserService userService;
 //    TradeService tradeService;
 //
 //    @Autowired
@@ -30,13 +33,13 @@ public class UserController {
 //        return "login";
 //    }
 //
-//    @GetMapping("/register")
-//    public String registerForm(Model model) {
-//        User user = new User();
-//        model.addAttribute("user", user);
-//
-//        return "register";
-//    }
+    @GetMapping("/register")
+    public String registerForm(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+
+        return "register";
+    }
 //
 //    @GetMapping("/profile/{id}")
 //    public String profile(Model model, @PathVariable("id") int id) {
@@ -47,20 +50,20 @@ public class UserController {
 //        return "profile";
 //    }
 //
-//    @PostMapping("/register/save")
-//    public String register(@Valid @ModelAttribute("user") User user,
-//                           BindingResult result, Model model) {
-//        if (userService.findByEmail(user.getEmail()).getEmail() != null) {
-////            result.rejectValue("email", "this email already registered");
-////            System.out.println("\n\n\n"+userService.findByEmail(user.getEmail()));
-//            return "redirect:/register?fail";
-//        }
-//        if (result.hasErrors()) {
-//            model.addAttribute("user", user);
-//            return "register";
-//        }
-//        userService.createUser(user);
-//        return "redirect:/";
-//    }
+    @PostMapping("/register/save")
+    public String register(@Valid @ModelAttribute("user") User user,
+                           BindingResult result, Model model) {
+        if (userService.findByEmail(user.getEmail()).getEmail() != null) {
+//            result.rejectValue("email", "this email already registered");
+//            System.out.println("\n\n\n"+userService.findByEmail(user.getEmail()));
+            return "redirect:/register?fail";
+        }
+        if (result.hasErrors()) {
+            model.addAttribute("user", user);
+            return "register";
+        }
+        userService.createUser(UserMapper.userToUserCreationDTO(user));
+        return "redirect:/";
+    }
 
 }

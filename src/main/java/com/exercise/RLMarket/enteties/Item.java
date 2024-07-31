@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,10 +17,10 @@ import lombok.NoArgsConstructor;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
+@Builder
 public class Item {
     @Id
     @Column(name = "item_id")
-//    @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     @Column(name = "item_long_label")
     String longLabel;
@@ -27,8 +28,6 @@ public class Item {
     @Column(name = "item_short_sort_label")
     String shortLabel;
 
-//    @Column(name = "item_slot_index")
-//    int slotIndex;
     @Column(name = "type")
     @Enumerated(EnumType.ORDINAL)
     @Basic(optional=false)

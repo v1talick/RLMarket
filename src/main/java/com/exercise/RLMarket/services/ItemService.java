@@ -1,6 +1,7 @@
 package com.exercise.RLMarket.services;
 
 import com.exercise.RLMarket.DTOs.ItemDTO;
+import com.exercise.RLMarket.enteties.enums.ItemType;
 
 import java.util.List;
 
@@ -9,5 +10,5 @@ public interface ItemService {
 
     ItemDTO getItem(int id);
 
-    List<ItemDTO> getItemsByType(String itemType);
+    List<ItemDTO> getItemsByType(ItemType itemType);
 }

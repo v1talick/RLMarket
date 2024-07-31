@@ -1,17 +1,19 @@
-package com.exercise.RLMarket.DTOs;
+package com.exercise.RLMarket.DTOs.creationDTOs;
 
 import com.exercise.RLMarket.enteties.enums.Role;
-import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Value;
 
 @Value
 @AllArgsConstructor
-public class UserDTO {
+public class UserCreationDTO {
     int id;
     String email;
     String epicGames;
+    String password;
     Role role;
 }
