@@ -5,9 +5,11 @@ import com.exercise.RLMarket.DTOs.creationDTOs.TradeCreationDTO;
 import com.exercise.RLMarket.mappers.TradeMapper;
 import com.exercise.RLMarket.repositories.TradeRepository;
 import com.exercise.RLMarket.services.TradeService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TradeServiceImpl implements TradeService {
     TradeRepository tradeRepository;
     @Override

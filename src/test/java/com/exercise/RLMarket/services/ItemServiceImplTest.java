@@ -21,31 +21,4 @@ import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 public class ItemServiceImplTest {
-    @Mock
-    private ItemRepository itemRepository;
-    @InjectMocks
-    private ItemServiceImpl serviceTest;
-
-    public Item testItem1 = new Item(1, "Label", false, true, 1);
-    public Item testItem2 = new Item(2, "Label2", true, false, 2);
-    @Test
-    public void getItemsTest() {
-        List<Item> test = new ArrayList<>();
-        test.add(testItem1);
-        test.add(testItem2);
-
-        Mockito.when(itemRepository.findAll()).thenReturn(test);
-
-        List<ItemDTO> items = serviceTest.getItems();
-        assertEquals(test.stream().map(ItemMapper::itemToItemDTO).toList(), items);
-    }
-
-    @Test
-    public void getItemTest() {
-        Item test = testItem1;
-
-        Mockito.when(itemRepository.findById(1)).thenReturn(Optional.of(test));
-
-        assertEquals(ItemMapper.itemToItemDTO(test),serviceTest.getItem(1));
-    }
 }

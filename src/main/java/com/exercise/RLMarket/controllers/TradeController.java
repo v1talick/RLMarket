@@ -45,10 +45,10 @@ public class TradeController {
 //        return "redirect:/trading";
 //    }
 //
-//    @GetMapping("/")
-//    public String home(Model model) {
-//        return "home";
-//    }
+    @GetMapping("/")
+    public String home(Model model) {
+        return "home";
+    }
 //
 //    @GetMapping("/trading")
 //    public String createTradeOffer(Model model) {

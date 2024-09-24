@@ -1,6 +1,7 @@
 package com.exercise.RLMarket.services.impl;
 
 import com.exercise.RLMarket.DTOs.ItemDTO;
+import com.exercise.RLMarket.enteties.Item;
 import com.exercise.RLMarket.enteties.enums.ItemType;
 import com.exercise.RLMarket.mappers.ItemMapper;
 import com.exercise.RLMarket.repositories.ItemRepository;
@@ -23,6 +24,9 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemDTO getItem(int id) {
         return ItemMapper.itemToItemDTO(itemRepository.findById(id).get());
+//        Item item = itemRepository.findById(id)
+//                .orElseThrow(() -> new ItemNotFoundException(id));
+//        return ItemMapper.itemToItemDTO(item);
     }
 
     @Override
