@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @IdClass(TradeItemPK.class)
-@Builder
-public class TradeItem {
+public abstract class TradeItem {
     @Id
     int trade;
     @Id

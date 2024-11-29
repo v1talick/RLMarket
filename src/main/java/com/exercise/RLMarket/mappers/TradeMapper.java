@@ -52,7 +52,7 @@ public class TradeMapper {
                 .build();
     }
     private static TradeItem tradeItemCreationDTOtoTradeItem(TradeItemCreationDTO tradeItemDTO) {
-        return new TradeItem(tradeItemDTO.getTrade()
+        return new GiveItem(tradeItemDTO.getTrade()
                 , ItemMapper.itemDTOtoItem(tradeItemDTO.getItem()), tradeItemDTO.getAmount());
     }
 

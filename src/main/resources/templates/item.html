@@ -2,72 +2,66 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title th:text="${item.itemLongLabel}"></title>
-  <!-- Add Bootstrap and custom styling -->
+  <title th:text="${item.longLabel}"></title>
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            margin-top: 30px;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .item-details {
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: #fff;
-        }
-
-        .item-image {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #ddd;
-            transition: opacity 0.3s;
-        }
-
-        .item-image:hover {
-            opacity: 0.8;
-        }
-
-        .item-info {
-            text-align: center;
-            padding: 15px;
-        }
-    </style>
+  <link rel="stylesheet" th:href="@{/css/header-style.css}">
 </head>
-<body>
+<body class="bg-light">
 
-<div class="container">
-  <h2 th:text="${item.itemLongLabel}"></h2>
+<div class="container mt-5">
+  <header class="header" th:insert="~{blocks/header :: header}"></header>
+  <div class="card">
+    <!-- Item Image -->
+    <img class="card-img-top img-fluid" th:src="@{/itemsimg/dominus.jpeg}" alt="Item Image">
 
-  <div class="item-details">
-    <img class="item-image"
-         th:src="'https://raw.githubusercontent.com/enzanki-ars/rocket-league-item-images/enzanki-ars/Rocket%20League%20Item%20Images/'
-                            + ${item.itemType} + '/' + ${item.itemLongLabel.replace(' ', '%20')} + '/Default.png'"
-         th:alt="${item.itemLongLabel + ' Image'}" loading="lazy">
-    <div class="item-info">
-      <p th:text="'Item ID: ' + ${item.id}"></p>
-      <p th:text="'Blueprint: ' + ${item.itemBlueprint}"></p>
-      <p th:text="'Paintable: ' + ${item.itemPaintable}"></p>
-      <p th:text="'Item Type: ' + ${item.itemType}"></p>
+    <!-- Card Body -->
+    <div class="card-body text-center">
+      <!-- Long Label -->
+      <h5 class="card-title" th:text="${item.longLabel}"></h5>
+      <!-- Short Label -->
+      <p class="text-muted" th:text="${item.shortLabel}"></p>
+
+      <!-- Item Information Table -->
+      <table class="table table-striped mt-4">
+        <tbody>
+        <!-- Item ID -->
+        <tr>
+          <th scope="row">Item ID</th>
+          <td th:text="${item.id}"></td>
+        </tr>
+        <!-- Item Type -->
+        <tr>
+          <th scope="row">Item Type</th>
+          <td th:text="${item.type}"></td>
+        </tr>
+        <!-- Quality -->
+        <tr>
+          <th scope="row">Quality</th>
+          <td th:text="${item.quality}"></td>
+        </tr>
+        <!-- Paintable -->
+        <tr>
+          <th scope="row">Paintable</th>
+          <td th:text="${item.paintable ? 'Yes' : 'No'}"></td>
+        </tr>
+        <!-- Trade Restriction -->
+        <tr>
+          <th scope="row">Trade Restriction</th>
+          <td th:text="${item.tradeRestriction ? 'Restricted' : 'Not Restricted'}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Thumbnail Image -->
+    <div class="text-center p-3">
+      <img class="img-thumbnail" th:src="${item.thumbnailAsset}" alt="Thumbnail Image">
     </div>
   </div>
 </div>
 
-<!-- Add Bootstrap JS and Popper.js CDN links -->
+<!-- Bootstrap JS and Popper.js -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

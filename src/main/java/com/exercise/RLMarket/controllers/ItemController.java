@@ -3,15 +3,21 @@ package com.exercise.RLMarket.controllers;
 import com.exercise.RLMarket.DTOs.ItemDTO;
 import com.exercise.RLMarket.enteties.enums.ItemType;
 import com.exercise.RLMarket.services.ItemService;
+import org.hibernate.sql.ast.tree.expression.Collation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Controller
 public class ItemController {
@@ -23,13 +29,15 @@ public class ItemController {
     }
 
     @GetMapping("/items")
-    public String getItems(@RequestParam(name = "itemType", required = false) Optional<ItemType> itemType
+    public String getItems(@RequestParam(name = "itemType", required = false) Optional<String> itemType
+            ,@RequestParam(name = "name", required = false) Optional<String> longLabel
+            ,@RequestParam(name = "quality", required = false) Optional<String> quality
             , Model model) {
         List<ItemDTO> result;
-
-        if (itemType.isPresent()) {
+        if (itemType.isPresent() || longLabel.isPresent() || quality.isPresent()) {
             // Filter items based on itemType
-            result = itemService.getItemsByType(itemType.get());
+            result = itemService.getItems(itemType, longLabel, quality);
+//            result = itemService.getItemsByType(ItemType.valueOf(itemType.get()));
         } else {
             // If no filter is applied, get all items
             result = itemService.getItems();
@@ -40,11 +48,12 @@ public class ItemController {
     }
 //
 //
-//    @GetMapping("/item/{id}")
-//    public String getItem(Model model, @PathVariable int id) {
-//        model.addAttribute("item", itemService.getItem(id));
-//        return "item";
-//    }
+    @GetMapping("/item/{id}")
+    public String getItem(Model model, @PathVariable int id) {
+        model.addAttribute("item", itemService.getItem(id));
+        return "item";
+//        Pageable
+    }
 //
 //    @GetMapping("/trade")
 //    public String createTradeOffer(Model model) {
