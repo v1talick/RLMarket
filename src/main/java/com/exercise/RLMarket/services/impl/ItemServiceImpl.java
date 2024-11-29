@@ -8,9 +8,11 @@ import com.exercise.RLMarket.repositories.ItemRepository;
 import com.exercise.RLMarket.services.ItemService;
 import com.exercise.scpecifications.ItemSpecs;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -24,13 +26,19 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemDTO> getItems(Optional<String> itemType, Optional<String> longLabel,
-                                  Optional<String> qualityId) {
-        Optional<ItemType> itemType1 = !itemType.get().equals("") ? Optional.of(ItemType.valueOf(itemType.get()))   : Optional.empty();
-        Optional<String> longLabel1 = !itemType.get().equals("") ? Optional.of((longLabel.get()))   : Optional.empty();
-        Optional<Integer> qualityId1 = !itemType.get().equals("") ? Optional.of(Integer.valueOf(qualityId.get()))   : Optional.empty();
-        return itemRepository.findAll(ItemSpecs.generalSpecification(itemType1, longLabel1, qualityId1))
-                .stream().map(ItemMapper::itemToItemDTO).toList();
+    public List<ItemDTO> getItems(String itemType, String longLabel, String quality) {
+        Specification<Item> itemSpecification = Specification.where(null);
+        if (!Objects.equals(itemType, "")) {
+            itemSpecification = itemSpecification.and(ItemSpecs.byItemType(ItemType.valueOf(itemType)));
+        }
+        if (!Objects.equals(longLabel, "")) {
+            itemSpecification = itemSpecification.and(ItemSpecs.byLongLabel(longLabel));
+        }
+        if (!Objects.equals(quality, "")) {
+            itemSpecification = itemSpecification.and(ItemSpecs.byQuality(Integer.parseInt(quality)));
+        }
+            return itemRepository.findAll(itemSpecification).stream()
+                    .map(ItemMapper::itemToItemDTO).toList();
     }
 
     @Override

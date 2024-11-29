@@ -11,12 +11,23 @@ import org.springframework.data.jpa.domain.Specification;
 import java.util.Optional;
 
 public class ItemSpecs {
-//    public static Specification<Item> itemTypeSpec(ItemType itemType) {
-//        return (root, query, builder) -> {
-//            // build query here
-//            builder.equal()
-//        };
-//    }
+    public static Specification<Item> byItemType(ItemType itemType) {
+        return (root, query, builder) -> {
+            // build query here
+            return builder.equal(root.get("type"), itemType);
+        };
+    }
+    public static Specification<Item> byLongLabel(String longLabel) {
+        return (root, query, builder) -> {
+            // build query here
+            return builder.equal(root.get("longLabel"), longLabel);
+        };
+    }
+    public static Specification<Item> byQuality(int quality) {
+        return ((root, query, criteriaBuilder) -> {
+            return criteriaBuilder.equal(root.get("quality"), quality);
+        });
+    }
     public static Specification<Item> generalSpecification(Optional<ItemType> itemType, Optional<String> longLabel,
                                                            Optional<Integer> qualityId) {
         Specification<Item> result = Specification.where(null);

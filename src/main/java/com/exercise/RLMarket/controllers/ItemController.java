@@ -29,12 +29,12 @@ public class ItemController {
     }
 
     @GetMapping("/items")
-    public String getItems(@RequestParam(name = "itemType", required = false) Optional<String> itemType
-            ,@RequestParam(name = "name", required = false) Optional<String> longLabel
-            ,@RequestParam(name = "quality", required = false) Optional<String> quality
+    public String getItems(@RequestParam(name = "itemType", defaultValue = "") String itemType
+            ,@RequestParam(name = "longLabel", defaultValue = "") String longLabel
+            ,@RequestParam(name = "quality", defaultValue = "") String quality
             , Model model) {
         List<ItemDTO> result;
-        if (itemType.isPresent() || longLabel.isPresent() || quality.isPresent()) {
+        if (!Objects.equals(itemType, "") || !Objects.equals(longLabel, "") || !Objects.equals(quality, "")) {
             // Filter items based on itemType
             result = itemService.getItems(itemType, longLabel, quality);
 //            result = itemService.getItemsByType(ItemType.valueOf(itemType.get()));

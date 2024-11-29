@@ -8,10 +8,8 @@ import java.util.Optional;
 
 public interface ItemService {
     List<ItemDTO> getItems();
-    List<ItemDTO> getItems(Optional<String> itemType, Optional<String> longLabel,
-                           Optional<String> qualityId);
-
     ItemDTO getItem(int id);
 
     List<ItemDTO> getItemsByType(ItemType itemType);
+    List<ItemDTO> getItems(String itemType, String longLabel, String quality);
 }
